@@ -1,7 +1,15 @@
 // app/articles/[slug]/page.tsx
+
 import { client } from '../../../lib/datocms';
 import { gql } from 'graphql-request';
 import Image from 'next/image';
+
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
+interface ArticlePageProps {
+  params: Promise<{ slug: string }>;
+}
 
 interface Article {
   id: string;
@@ -39,14 +47,8 @@ const ARTICLE_QUERY = gql`
   }
 `;
 
-interface ArticlePageProps {
-  params: { slug: string } | Promise<{ slug: string }>;
-}
-
-export default async function ArticlePage(props: ArticlePageProps) {
-  // Await params before using it
-  const params = await props.params;
-  const { slug } = params;
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const { slug } = await params;
   const data = await client.request<ArticleData>(ARTICLE_QUERY, { slug });
   const article = data.article;
 
