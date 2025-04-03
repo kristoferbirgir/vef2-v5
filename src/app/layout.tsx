@@ -1,15 +1,16 @@
 // app/layout.tsx
-import './globals.css';
+import './globals.scss';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full">
-      <body className="h-full flex flex-col">
+    <html lang="en">
+      <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Navbar />
-        {/* flex-grow pushes the footer to the bottom if there's not enough content */}
-        <main className="flex-grow">{children}</main>
+        <main className="container" style={{ flex: 1, paddingTop: "20px" }}>
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

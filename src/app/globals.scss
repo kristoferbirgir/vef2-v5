@@ -1,0 +1,233 @@
+@use "sass:color";
+
+/* Variables */
+$primary-color: #333; /* Navbar & Footer color */
+$secondary-color: #007BFF; /* For article links border & hover */
+$light-bg: #fff;
+$border-color: #ddd;
+
+/* Reset and base styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: $light-bg;
+  box-sizing: border-box;
+}
+
+/* Apply box-sizing to all elements */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* Container: main layout wrapper */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  
+  /* On screens 768px and up, limit container width */
+  @media (min-width: 768px) {
+    max-width: 1200px;
+  }
+}
+
+/* Card component for pages */
+.card {
+  background-color: $light-bg;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%; /* Ensure the card fills the container width */
+}
+
+/* Homepage styles */
+.homepage-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.homepage-description {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* Articles List */
+.articles-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.article-date {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.article-image {
+  position: relative;
+  width: 100%;
+  margin: 20px 0;
+  background-color: $border-color;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .image-caption,
+  .image-credit {
+    position: absolute;
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+  }
+
+  .image-caption {
+    left: 10px;
+  }
+
+  .image-credit {
+    right: 10px;
+    font-size: 0.8rem;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.article-body {
+  line-height: 1.6;
+  margin-top: 20px;
+  white-space: pre-line;
+  font-size: 1rem;
+  color: #333;
+}
+
+.article-link {
+  display: block;
+  padding: 10px;
+  border: 1px solid $secondary-color;
+  border-radius: 3px;
+  text-decoration: none;
+  color: $secondary-color;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: color.adjust($secondary-color, $lightness: 40%);
+  }
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 15px 0;
+
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap; /* Keep brand & links on one line */
+  }
+
+  .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    white-space: nowrap;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-wrap: nowrap;
+
+    li {
+      margin-left: 10px;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 5px 10px;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+        white-space: nowrap;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
+}
+
+/* FOOTER */
+.footer {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+  .homepage-title,
+  .articles-title {
+    font-size: 1.75rem;
+  }
+
+  .homepage-description {
+    font-size: 1rem;
+  }
+
+  .nav-links li {
+    margin-left: 5px;
+  }
+
+  .nav-links li a {
+    font-size: 0.9rem;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand {
+    font-size: 1.3rem;
+  }
+
+  .nav-links li a {
+    font-size: 0.85rem;
+    padding: 3px 6px;
+  }
+}
